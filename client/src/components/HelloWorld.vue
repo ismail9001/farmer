@@ -72,10 +72,7 @@
         </a>
       </li>
       <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
+        <a href="https://github.com/vuejs/awesome-vue" target="_blank">
           awesome-vue
         </a>
       </li>
@@ -85,12 +82,12 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
+	name: 'HelloWorld',
+	data () {
+		return {
+			msg: 'Welcome to Your Vue.js App'
+		}
+	}
 }
 </script>
 

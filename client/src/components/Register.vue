@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1> Register</h1>
-
     <input
       type="text"
       name = "email"
@@ -20,25 +19,25 @@
 </template>
 
 <script>
-  import AuthenticationService from "../services/AuthenticationService";
+import AuthenticationService from '../services/AuthenticationService'
 export default {
-  data () {
-    return {
-        email: 'abc',
-        password: '123'
-    }
-  },
-    methods: {
-      async register () {
-          const response = await AuthenticationService.register({
-              email: this.email,
-              password: this.password
-          })
-          console.log(response.data)
-      }
-    },
-    mounted () {
-    }
+	data () {
+		return {
+			email: 'abc',
+			password: '123'
+		}
+	},
+	methods: {
+		register: async function () {
+			const [response] = await Promise.all([AuthenticationService.register({
+				email: this.email,
+				password: this.password
+			})])
+			console.log(response.data)
+		}
+	},
+	mounted () {
+	}
 }
 </script>
 
