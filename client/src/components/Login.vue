@@ -3,13 +3,10 @@
     <v-flex xs6 offset-md3>
       <div class="white elevation-2">
         <v-toolbar flat dense class="teal" dark>
-          <v-toolbar-title>Register
+          <v-toolbar-title>Login
           </v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
-          <form
-            name="farmer-form"
-            autocomplete="off">
           <v-text-field
             v-model="email"
             label="Email"
@@ -17,15 +14,14 @@
           <v-text-field
             v-model="password"
             label="Password"
-            autocomplete="new-password"
+            type="password"
           ></v-text-field>
-          </form>
         <div class="error" v-html="error" />
         <br>
           <v-btn
             class="teal"
-            @click="register" dark>
-            Register
+            @click="login" dark>
+            Login
           </v-btn>
         </div>
       </div>
@@ -44,9 +40,9 @@ export default {
 		}
 	},
 	methods: {
-		async register () {
+		async login () {
 			try {
-				const response = await AuthenticationService.register({
+				const response = await AuthenticationService.login({
 					email: this.email,
 					password: this.password
 				})
