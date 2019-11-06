@@ -1,0 +1,129 @@
+<template>
+<v-layout>
+  <v-flex xs4>
+  <panel title="Song Metadata">
+    <v-text-field
+      label="Title"
+      required
+      :rules=[rules.required.check]
+      :error-messages="error"
+      v-model="song.title"
+    ></v-text-field>
+    <v-text-field
+      label="Artist"
+      required
+      :rules=[rules.required.check]
+      :error-messages="error"
+      v-model="song.artist"
+    ></v-text-field>
+    <v-text-field
+      label="Genre"
+      required
+      :rules=[rules.required.check]
+      :error-messages="error"
+      v-model="song.genre"
+    ></v-text-field>
+    <v-text-field
+      label="Album"
+      required
+      :rules=[rules.required.check]
+      :error-messages="error"
+      v-model="song.album"
+    ></v-text-field>
+    <v-text-field
+      label="Album image URL"
+      required
+      :rules=[rules.required.check]
+      :error-messages="error"
+      v-model="song.albumImageUrl"
+    ></v-text-field>
+    <v-text-field
+      label="YouTube ID"
+      required
+      :rules=[rules.required.check]
+      :error-messages="error"
+      v-model="song.youtubeId"
+    ></v-text-field>
+  </panel>
+  </v-flex>
+  <v-flex xs8>
+    <panel title="Song Structure" class="ml-4">
+    <v-textarea
+      label="Tab"
+      required
+      :rules=[rules.required.check]
+      :error-messages="error"
+      v-model="song.tab"
+    ></v-textarea>
+    <v-textarea
+      label="Lyrics"
+      required
+      :rules=[rules.required.check]
+      :error-messages="error"
+      v-model="song.lyrics"
+    ></v-textarea>
+    </panel>
+    <v-btn
+      class="teal"
+      @click="create" dark>
+      Create SOng
+    </v-btn>
+  </v-flex>
+</v-layout>
+</template>
+
+<script>
+import Panel from '@/components/Panel'
+import SongService from '@/services/SongService'
+export default {
+	name: 'CreateSong',
+	data () {
+		return {
+			song: {
+				title: null,
+				artist: null,
+				genre: null,
+				album: null,
+				albumImageUrl: null,
+				youtubeId: null,
+				lyrics: null,
+				tab: null
+			},
+			rules: {
+				required: {
+					error: 'This field is required',
+					check: (value) => !!value
+				}
+			},
+			error: null
+		}
+	},
+	methods: {
+		async create () {
+			this.error = null
+			const areAllFieldsFilledIn = Object
+				.keys(this.song)
+				.every(key => !!this.song[key])
+			if (!areAllFieldsFilledIn) {
+				this.error = this.rules.required.error
+				return
+			}
+			try {
+				await SongService.post(this.song)
+				this.$router.push({
+					name: 'songs'
+				})
+			} catch (err) {
+				console.log(err)
+			}
+		}
+	},
+	components: {
+		Panel
+	}
+}
+</script>
+
+<style scoped>
+
+</style>

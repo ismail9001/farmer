@@ -1,12 +1,7 @@
 <template>
   <v-layout column>
     <v-flex xs6 offset-md3>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="teal" dark>
-          <v-toolbar-title>Login
-          </v-toolbar-title>
-        </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2">
+      <panel title="Login">
           <v-text-field
             v-model="email"
             label="Email"
@@ -23,14 +18,15 @@
             @click="login" dark>
             Login
           </v-btn>
-        </div>
-      </div>
+      </panel>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import AuthenticationService from '../services/AuthenticationService'
+import Panel from '@/components/Panel'
+
 export default {
 	data () {
 		return {
@@ -53,7 +49,8 @@ export default {
 			}
 		}
 	},
-	mounted () {
+	components: {
+		Panel
 	}
 }
 </script>
