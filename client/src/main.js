@@ -7,7 +7,9 @@ import {sync} from 'vuex-router-sync'
 import App from './App'
 import router from './router'
 import store from '@/store/store'
+import VueYoutube from 'vue-youtube-embed'
 
+Vue.use(VueYoutube)
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
