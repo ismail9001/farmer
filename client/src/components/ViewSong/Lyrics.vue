@@ -8,15 +8,11 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
 export default {
 	name: 'Lyrics',
 	props: [
 		'song'
-	],
-	components: {
-		Panel
-	}
+	]
 }
 </script>
 

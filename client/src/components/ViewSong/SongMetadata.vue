@@ -13,7 +13,11 @@
         </div>
 
         <v-btn
-          @click="navigateTo({name: 'song-edit', params: {songId:song.id}})"
+          :to="{
+            name: 'song-edit', params () {
+              return {songId:song.id}
+            }
+          }"
           light
           medium
           small>
@@ -30,18 +34,9 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
 export default {
 	name: 'SongMetadata',
-	props: ['song'],
-	methods: {
-		navigateTo (route) {
-			this.$router.push(route)
-		}
-	},
-	components: {
-		Panel
-	}
+	props: ['song']
 }
 </script>
 

@@ -74,7 +74,6 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
 import SongService from '@/services/SongService'
 export default {
 	name: 'CreateSong',
@@ -101,7 +100,6 @@ export default {
 	},
 	methods: {
 		async save () {
-			console.log('save clicked')
 			this.error = null
 			const areAllFieldsFilledIn = Object
 				.keys(this.song)
@@ -130,9 +128,6 @@ export default {
 		} catch (err) {
 			console.log(err)
 		}
-	},
-	components: {
-		Panel
 	}
 }
 </script>

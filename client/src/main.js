@@ -8,9 +8,11 @@ import App from './App'
 import router from './router'
 import store from '@/store/store'
 import VueYoutube from 'vue-youtube-embed'
+import Panel from '@/components/globals/Panel'
 
 Vue.use(VueYoutube)
 Vue.use(Vuetify)
+Vue.component('panel', Panel)
 Vue.config.productionTip = false
 
 sync(store, router)

@@ -1,5 +1,6 @@
 <template>
 <panel title="YouTube Video">
+<!--  TODO: сделать резиновым размер YouTube-->
   <youtube
     ref="youtube"
   :video-id="youtubeId"
@@ -10,7 +11,6 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
 import VueYouTube from 'vue-youtube-embed'
 export default {
 	name: 'YouTube',
@@ -18,7 +18,6 @@ export default {
 		'youtubeId'
 	],
 	components: {
-		Panel,
 		VueYouTube
 	}
 }
