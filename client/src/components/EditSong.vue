@@ -76,7 +76,7 @@
 <script>
 import SongService from '@/services/SongService'
 export default {
-	name: 'CreateSong',
+	name: 'EditSong',
 	data () {
 		return {
 			song: {
@@ -122,6 +122,7 @@ export default {
 		}
 	},
 	async mounted () {
+		console.log(this.song.id)
 		try {
 			const songId = this.$store.state.route.params.songId
 			this.song = (await SongService.show(songId)).data

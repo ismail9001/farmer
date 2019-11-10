@@ -23,6 +23,22 @@
           small>
           Edit
         </v-btn>
+        <v-btn
+          v-if="isUserLoggedIn && !bookmark"
+          @click="setAsBookmark"
+          light
+          medium
+          small>
+          Set As Bookmark
+        </v-btn>
+        <v-btn
+          v-if="isUserLoggedIn && bookmark"
+          @click="unsetAsBookmark"
+          light
+          medium
+          small>
+          Unset Bookmark
+        </v-btn>
       </v-flex>
       <v-flex xs6>
         <img class="album-image" v-bind:src="song.albumImageUrl"/>
@@ -34,9 +50,61 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import BookmarksService from '@/services/BookmarksService'
+
 export default {
 	name: 'SongMetadata',
-	props: ['song']
+	props: [
+		'song'
+	],
+	data () {
+		return {
+			bookmark: false
+		}
+	},
+	computed: {
+		...mapState([
+			'isUserLoggedIn'
+		])
+	},
+	watch: {
+		async song (value) {
+			if (!this.isUserLoggedIn) {
+				return
+			}
+			try {
+				const query = {
+					songId: this.$store.state.route.params.songId,
+					userId: this.$store.state.user.id
+				}
+				this.bookmark = (await BookmarksService.index(query)).data
+			} catch (err) {
+				console.log(err)
+			}
+		}
+	},
+	methods: {
+		async setAsBookmark () {
+			try {
+				// Todo: почему вместо this.song.id работает только this.$store.state.route.params.songId)
+				this.bookmark = (await BookmarksService.post({
+					songId: this.$store.state.route.params.songId,
+					userId: this.$store.state.user.id
+				})).data
+			} catch (err) {
+				console.log(err)
+			}
+		},
+		async unsetAsBookmark () {
+			try {
+				await BookmarksService.delete(this.bookmark.id)
+				this.bookmark = null
+			} catch (err) {
+				console.log(err)
+			}
+		}
+	}
 }
 </script>
 
