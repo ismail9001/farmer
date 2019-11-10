@@ -69,7 +69,7 @@ export default {
 		])
 	},
 	watch: {
-		async song (value) {
+		async song () {
 			if (!this.isUserLoggedIn) {
 				return
 			}
@@ -101,7 +101,7 @@ export default {
 				await BookmarksService.delete(this.bookmark.id)
 				this.bookmark = null
 			} catch (err) {
-				console.log(err)
+				console.log(err + ' ')
 			}
 		}
 	}
