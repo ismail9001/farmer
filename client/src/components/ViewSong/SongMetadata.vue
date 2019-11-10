@@ -101,7 +101,7 @@ export default {
 				await BookmarksService.delete(this.bookmark.id)
 				this.bookmark = null
 			} catch (err) {
-				console.log(err + ' ')
+				console.log(err)
 			}
 		}
 	}

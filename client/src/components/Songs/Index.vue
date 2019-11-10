@@ -1,7 +1,9 @@
 <template>
-
   <v-layout>
-    <v-flex xs6 offset-md3>
+    <v-flex xs6>
+      <songs-bookmarks/>
+    </v-flex>
+    <v-flex xs6 class="ml-4">
       <songs-search-panel />
       <SongsPanel class="mt-4"/>
     </v-flex>
@@ -10,13 +12,16 @@
 
 <script>
 import SongsPanel from './SongsPanel'
+import SongsBookmarks from './SongsBookmarks'
 import SongsSearchPanel from './SongsSearchPanel'
 import SongsService from '@/services/SongService'
+
 export default {
 	name: 'Songs',
 	components: {
 		SongsPanel,
-		SongsSearchPanel
+		SongsSearchPanel,
+		SongsBookmarks
 	},
 	data () {
 		return {
@@ -29,29 +34,10 @@ export default {
 		}
 	},
 	async mounted () {
-		// do request yo backend
 		this.songs = (await SongsService.getAllSongs()).data
 	}
 }
 </script>
 
 <style scoped>
-  .song {
-    padding: 20px;
-    height: 333px;
-    overflow: hidden;
-  }
-  .song-artist{
-    font-size: 24px
-  }
-  .song-genre {
-    font-size: 18px
-  }
-  .song-title {
-    font-size: 30px
-  }
-.album-image {
-  width: 70%;
-  margin: 0 auto;
-}
 </style>
