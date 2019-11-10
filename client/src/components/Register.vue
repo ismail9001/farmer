@@ -1,8 +1,7 @@
 <template>
-  <v-layout column>
+  <v-layout>
     <v-flex xs6 offset-md3>
       <panel title="Register">
-<!--      TODO научиться делать отступы справа слева во flex-->
           <form
             name="farmer-form"
             autocomplete="off">
