@@ -90,7 +90,6 @@ export default {
 	methods: {
 		async setAsBookmark () {
 			try {
-				// Todo: почему вместо this.song.id работает только this.$store.state.route.params.songId)
 				this.bookmark = (await BookmarksService.post({
 					songId: this.song.id,
 					userId: this.user.id

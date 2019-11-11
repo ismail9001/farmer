@@ -33,7 +33,7 @@ export default {
 				value: 'artist'
 			}],
 			pagination: {
-				sortBy: 'date',
+				sortBy: 'createdAt',
 				descending: true
 			},
 			bookmarks: []
