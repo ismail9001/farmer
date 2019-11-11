@@ -36,15 +36,7 @@ export default {
 				sortBy: 'date',
 				descending: true
 			},
-			bookmarks: [{
-				title: 'Hello world',
-				artist: 'Testing'
-			},
-			{
-				title: 'Hello world',
-				artist: 'Testing'
-			}
-			]
+			bookmarks: []
 		}
 	},
 	computed: {
@@ -57,7 +49,7 @@ export default {
 		if (this.isUserLoggedIn) {
 			this.bookmarks = (await BookmarksService.index({
 				userId: this.user.id
-			}))
+			})).data
 		}
 	}
 }

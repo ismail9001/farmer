@@ -15,7 +15,7 @@
         <v-btn
           :to="{
             name: 'song-edit', params () {
-              return {songId:song.id}
+              return {songId: song.id}
             }
           }"
           light
@@ -65,7 +65,8 @@ export default {
 	},
 	computed: {
 		...mapState([
-			'isUserLoggedIn'
+			'isUserLoggedIn',
+			'user'
 		])
 	},
 	watch: {
@@ -74,11 +75,13 @@ export default {
 				return
 			}
 			try {
-				const query = {
-					songId: this.$store.state.route.params.songId,
-					userId: this.$store.state.user.id
+				const bookmarks = (await BookmarksService.index({
+					songId: this.song.id,
+					userId: this.user.id
+				})).data
+				if (bookmarks.length) {
+					this.bookmark = bookmarks[0]
 				}
-				this.bookmark = (await BookmarksService.index(query)).data
 			} catch (err) {
 				console.log(err)
 			}
@@ -89,8 +92,8 @@ export default {
 			try {
 				// Todo: почему вместо this.song.id работает только this.$store.state.route.params.songId)
 				this.bookmark = (await BookmarksService.post({
-					songId: this.$store.state.route.params.songId,
-					userId: this.$store.state.user.id
+					songId: this.song.id,
+					userId: this.user.id
 				})).data
 			} catch (err) {
 				console.log(err)
