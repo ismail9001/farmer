@@ -7,7 +7,6 @@ export default {
 		})
 	},
 	post (bookmark) {
-		console.log('-----------------' + bookmark)
 		return Api().post('bookmarks', bookmark)
 	},
 	delete (bookmarkId) {
